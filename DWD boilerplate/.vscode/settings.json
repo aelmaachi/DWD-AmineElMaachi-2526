@@ -1,0 +1,36 @@
+{
+  // spaties gebruiken
+  "editor.insertSpaces": true,
+  "editor.tabSize": 3,
+  "editor.detectIndentation": false,
+
+  // --- AI assistants OFF (Copilot) ---
+  "github.copilot.enable": {
+    "*": false
+  },
+  "github.copilot.chat.enable": false,
+
+  // --- Suggesties "oplossing-achtig" temperen ---
+  "editor.inlineSuggest.enabled": false,
+  "editor.suggest.preview": false,
+
+  // Minder “magische” code completion
+  "editor.suggest.snippetsPreventQuickSuggestions": true,
+  "editor.tabCompletion": "off",
+
+  // --- Auto-imports / auto-fixes temperen (kan complete code genereren) ---
+  "javascript.suggest.autoImports": false,
+  "typescript.suggest.autoImports": false,
+
+  // --- Formatter: wél consistent, maar geen agressieve "fix all" ---
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "never",
+    "source.organizeImports": "never"
+  },
+
+  // --- (Optioneel) reduceer afleiding ---
+  "editor.minimap.enabled": false,
+  "breadcrumbs.enabled": false,
+  "liveServer.settings.port": 5501
+}
