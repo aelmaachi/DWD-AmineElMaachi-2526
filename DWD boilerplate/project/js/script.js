@@ -17,6 +17,7 @@ const resultsContainer = document.querySelector(".results-container");
 const dashboardContainer = document.querySelector(".dashboard-container");
 const volumeSlider = document.querySelector("#volumeSlider");
 const randomButton = document.querySelector(".random-button");
+const themeButton = document.querySelector(".theme-button");
 
 // Variabelen voor audio en dashboard
 let dashboardSounds = [];
@@ -285,6 +286,33 @@ function playRandomDashboardSound() {
     handlePlayButton(randomSound);
 }
 
+function saveThemeToStorage(theme) {
+    localStorage.setItem("theme", theme);
+}
+
+function loadThemeFromStorage() {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeButton.textContent = "Light mode";
+    } else {
+        themeButton.textContent = "Dark mode";
+    }
+}
+
+function toggleTheme() {
+    document.body.classList.toggle("dark-mode");
+
+    if (document.body.classList.contains("dark-mode")) {
+        themeButton.textContent = "Light mode";
+        saveThemeToStorage("dark");
+    } else {
+        themeButton.textContent = "Dark mode";
+        saveThemeToStorage("light");
+    }
+}
+
 
 // ===============================
 // 3. EVENT HANDLERS
@@ -333,5 +361,7 @@ function handleVolumeChange() {
 searchForm.addEventListener("submit", handleSearchSubmit);
 volumeSlider.addEventListener("input", handleVolumeChange);
 randomButton.addEventListener("click", playRandomDashboardSound);
+themeButton.addEventListener("click", toggleTheme);
 
 loadDashboardFromStorage();
+loadThemeFromStorage();
