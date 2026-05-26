@@ -2,8 +2,9 @@
 // 1. CONSTANTS AND VARIABLES
 // ===============================
 
-// Vervang deze tekst door jouw eigen Freesound API key.
-const API_KEY = "PLAK_HIER_JE_API_KEY";
+// Plak hier jouw Freesound "Client secret/Api key".
+// Let op: push deze key liefst niet naar een publieke GitHub repo.
+const API_KEY = "oLMlFWSpaBRR26vEK5QeQOaKsLfcX6JbzuhsofSi";
 
 // Freesound API endpoint voor text search.
 const API_URL = "https://freesound.org/apiv2/search/text/";
@@ -36,11 +37,15 @@ function formatDuration(seconds) {
 }
 
 function getPreviewUrl(sound) {
-    if (sound.previews["preview-hq-mp3"]) {
+    if (sound.previews && sound.previews["preview-hq-mp3"]) {
         return sound.previews["preview-hq-mp3"];
     }
 
-    return sound.previews["preview-lq-mp3"];
+    if (sound.previews && sound.previews["preview-lq-mp3"]) {
+        return sound.previews["preview-lq-mp3"];
+    }
+
+    return "";
 }
 
 function getWaveformUrl(sound) {
@@ -70,6 +75,9 @@ async function searchSounds(keyword) {
     const response = await fetch(url);
 
     if (!response.ok) {
+        console.log("Status:", response.status);
+        console.log("Status text:", response.statusText);
+
         throw new Error("De API request is mislukt.");
     }
 
@@ -163,6 +171,11 @@ function createSoundCard(sound, type) {
 }
 
 function handlePlayButton(sound) {
+    if (sound.previewUrl === "") {
+        showMessage("Dit geluid heeft geen preview om af te spelen.");
+        return;
+    }
+
     // Als hetzelfde geluid opnieuw wordt aangeklikt, stoppen we het.
     if (currentPlayingId === sound.id) {
         stopCurrentAudio();
@@ -301,7 +314,7 @@ async function handleSearchSubmit(event) {
         renderSearchResults(sounds);
         showMessage(`${sounds.length} resultaten gevonden.`);
     } catch (error) {
-        showMessage("Er ging iets mis bij het ophalen van de geluiden.");
+        showMessage("Er ging iets mis bij het ophalen van de geluiden. Controleer je API key of internetverbinding.");
         console.error(error);
     }
 }
