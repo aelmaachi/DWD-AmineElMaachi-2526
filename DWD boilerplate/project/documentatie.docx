@@ -1,11 +1,264 @@
 DWD Project - AI verslag
+Sound Button Panel
+
+Naam: Amine El Maachi
+Vak: Dynamic Web Development
+Project: Button Panel
+
 
 1. Agent instruction file
 
+Voor dit project werd een agent instruction file gebruikt: AGENTS.md. Dit bestand staat in de root van het project en bevat algemene richtlijnen voor het gebruik van AI tijdens het ontwikkelen.
+
+De belangrijkste afspraken in de agent instruction file waren:
+
+- Gebruik enkel vanilla HTML, CSS en JavaScript.
+- Gebruik geen frameworks of libraries zoals React, Vue, Bootstrap of jQuery.
+- Schrijf duidelijke code die ik zelf kan uitleggen tijdens een mogelijke verdediging.
+- Gebruik querySelector() en querySelectorAll() voor DOM-selectie.
+- Gebruik fetch met async/await voor API-aanvragen.
+- Werk feature per feature en verander niet te veel tegelijk.
+- Houd functies kort en duidelijk.
+- Gebruik duidelijke namen voor variabelen en functies.
+- Voorzie voldoende comments in de code.
+- Zorg dat de applicatie responsive is.
+- Bewaar dashboardgegevens met localStorage.
+- Vermijd onnodig ingewikkelde technieken.
+
+Inhoud van AGENTS.md:
+
+# Agent Instructions - DWD Button Panel
+
+## Project context
+This is a Dynamic Web Development school project for an IT course at Odisee.
+The project is a single page application made with vanilla HTML, CSS and JavaScript.
+
+## General rules
+- Use only vanilla HTML, CSS and JavaScript.
+- Do not use frameworks or libraries such as React, Vue, Bootstrap or jQuery.
+- Use clear and simple code that a beginner/intermediate IT student can explain.
+- Use querySelector() and querySelectorAll() for DOM selection.
+- Keep JavaScript organized in this order:
+  1. constants and variables
+  2. function declarations
+  3. event handlers
+  4. event listeners / initialization
+- Use fetch with async/await for API requests.
+- Add useful comments in the code.
+- Do not make huge changes at once. Work feature by feature.
+- Keep the design responsive.
+- Do not add code that is impossible to explain during a project defense.
+
+## Project requirements
+The application must:
+- Search sounds using the Freesound API.
+- Show search results with sound information.
+- Play a sound when clicking a sound button.
+- Stop the sound when clicking the same button again.
+- Stop the current sound when another sound starts.
+- Visually show which sound is currently playing.
+- Add sounds from search results to a dashboard.
+- Remove sounds from the dashboard.
+- Save dashboard sounds in localStorage.
+
+## Code style
+- Use meaningful variable and function names.
+- Avoid duplicated code where possible.
+- Keep functions small and focused.
+- Comment important logic.
+- Make sure the app does not crash during normal use.
+
+
 2. Initiële prompt
+
+Ik ben een IT-student en maak voor het vak Dynamic Web Development een single page webapplicatie in vanilla HTML, CSS en JavaScript.
+
+De bedoeling is om een Sound Button Panel te maken. De gebruiker moet geluidseffecten kunnen zoeken via de Freesound API. De zoekresultaten moeten getoond worden als kaarten met informatie zoals de naam van het geluid, maker, duur en waveform. Elk geluid moet afgespeeld kunnen worden via een knop. Wanneer hetzelfde geluid opnieuw wordt aangeklikt, moet het stoppen. Wanneer een ander geluid wordt afgespeeld, moet het vorige geluid stoppen.
+
+De gebruiker moet geluiden kunnen toevoegen aan een persoonlijk dashboard. Deze dashboardgeluiden moeten ook terug verwijderd kunnen worden. Het dashboard moet bewaard blijven met localStorage wanneer de pagina wordt vernieuwd of gesloten.
+
+Gebruik enkel vanilla HTML, CSS en JavaScript. Gebruik fetch met async/await voor de API-aanvraag. Gebruik geen frameworks of libraries. De code moet duidelijk, gestructureerd en goed becommentarieerd zijn, zodat ik elke regel kan uitleggen tijdens een eventuele verdediging.
+
+Werk in kleine stappen:
+1. eerst de projectstructuur;
+2. daarna de HTML;
+3. daarna de CSS;
+4. daarna de JavaScript voor de API;
+5. daarna het afspelen van geluiden;
+6. daarna het dashboard;
+7. daarna localStorage;
+8. daarna eigen uitbreidingen.
+
 
 3. Plan van aanpak
 
+1. Projectstructuur aanmaken
+
+Eerst werd de basisstructuur van het project aangemaakt. De volgende bestanden en mappen werden voorzien:
+
+- index.html
+- css/style.css
+- js/script.js
+- AGENTS.md
+- documentatie.docx
+- README.md
+
+2. HTML-basis bouwen
+
+Daarna werd de HTML-structuur gemaakt. De pagina bevat een header, een zoekgedeelte, een resultatencontainer en een dashboardgedeelte. Ook werden knoppen voorzien voor zoeken, random sound en dark mode.
+
+3. CSS-layout maken
+
+Vervolgens werd de pagina gestyled met CSS. Er werd een eenvoudige en duidelijke layout gemaakt met cards voor de geluiden, knoppen, spacing, afgeronde hoeken en een responsive grid. De pagina past zich ook aan op kleinere schermen.
+
+4. Freesound API koppelen
+
+Daarna werd de Freesound API gekoppeld via fetch en async/await. De gebruiker kan een zoekterm ingeven en de applicatie haalt de eerste resultaten op via de API.
+
+5. Zoekresultaten tonen
+
+De opgehaalde geluiden worden op de pagina getoond als cards. Elke card toont de naam van het geluid, de maker, de duur en de waveform-afbeelding.
+
+6. Audio afspelen en stoppen
+
+Daarna werd audiofunctionaliteit toegevoegd met de Audio API. Wanneer de gebruiker op Play klikt, wordt het geluid afgespeeld. Wanneer hetzelfde geluid opnieuw wordt aangeklikt, stopt het. Wanneer een ander geluid wordt aangeklikt, stopt het vorige geluid automatisch.
+
+7. Actieve knop visueel tonen
+
+Er werd een CSS-class toegevoegd aan de actieve sound card. Zo ziet de gebruiker duidelijk welk geluid momenteel wordt afgespeeld.
+
+8. Dashboard toevoegen
+
+Vervolgens werd de mogelijkheid toegevoegd om geluiden vanuit de zoekresultaten toe te voegen aan het dashboard. Er werd ook gecontroleerd dat hetzelfde geluid niet dubbel wordt toegevoegd.
+
+9. Dashboard verwijderen
+
+Daarna werd een verwijderknop toegevoegd bij dashboardgeluiden. Hiermee kan de gebruiker geluiden opnieuw uit het dashboard verwijderen.
+
+10. LocalStorage toevoegen
+
+Het dashboard wordt opgeslagen in localStorage met JSON.stringify. Bij het opnieuw laden van de pagina wordt de data opnieuw opgehaald met JSON.parse. Daardoor blijven de gekozen geluiden bewaard na refresh of sluiten van de browser.
+
+11. Eigen uitbreidingen toevoegen
+
+Als eigen uitbreidingen werden toegevoegd:
+- een Random sound-knop;
+- een volume slider;
+- dark mode met localStorage.
+
+12. Testen en verbeteren
+
+Tot slot werd de applicatie getest op:
+- zoeken via de Freesound API;
+- resultaten tonen;
+- geluid afspelen;
+- hetzelfde geluid stoppen;
+- ander geluid laten spelen en het vorige stoppen;
+- geluid toevoegen aan dashboard;
+- geluid verwijderen uit dashboard;
+- dashboard bewaren na refresh;
+- random sound;
+- volume aanpassen;
+- dark mode bewaren na refresh.
+
+
 4. Overzicht gebruikte agents
 
-5. Korte reflectieDWD Project - AI verslag
+claude - Projectanalyse en planning
+
+Doel:
+De opdracht begrijpen en een plan maken.
+
+Gestelde vragen:
+- Kan je de projectopgave analyseren?
+- Welke bestanden moet ik aanmaken?
+- Welke functionaliteiten zijn verplicht?
+- Wat is een goede projectstructuur?
+- Zit ik qua vereisten goed voor de opdracht?
+
+Samenvatting:
+De agent hielp om de opdracht op te splitsen in kleinere onderdelen. Eerst werd de vereiste functionaliteit bepaald. Daarna werd een projectstructuur voorgesteld met index.html, css/style.css, js/script.js, AGENTS.md en documentatie.docx. Ook werd gecontroleerd of de uiteindelijke applicatie voldoet aan de functionele vereisten.
+
+
+Chatgpt+ - Basislayout HTML en CSS
+
+Doel:
+Een eerste visuele versie van de applicatie maken.
+
+Gestelde vragen:
+- Geef mij de volledige code voor index.html.
+- Geef mij de volledige code voor style.css.
+- Zorg voor een eenvoudige, duidelijke en responsive layout.
+
+Samenvatting:
+De agent maakte een basislayout met een header, zoekformulier, resultatencontainer en dashboard. Daarna werd CSS toegevoegd voor cards, knoppen, spacing, responsive gedrag en een duidelijke visuele stijl. Na het testen werkte de pagina correct in de browser.
+
+
+Chatgpt+ - JavaScript en Freesound API
+
+Doel:
+De zoekfunctie en audiofunctionaliteit laten werken.
+
+Gestelde vragen:
+- Hoe vraag ik een Freesound API key aan?
+- Welke key moet ik gebruiken?
+- Hoe gebruik ik de API key in JavaScript?
+- Geef mij de volledige script.js-code.
+- Help mij de API-fout oplossen.
+
+Samenvatting:
+De agent hielp met het koppelen van de Freesound API via fetch en async/await. Er werd code toegevoegd om geluiden te zoeken, resultaten te tonen, audio af te spelen en te stoppen. Tijdens het testen was er eerst een probleem met de API key. Door de foutmelding te bekijken werd duidelijk dat de key op de juiste plaats in script.js moest worden ingevuld. Daarna werkte de zoekfunctie correct.
+
+
+Chatgpt+ 4 - Dashboard en localStorage
+
+Doel:
+Geluiden kunnen bewaren in een persoonlijk dashboard.
+
+Gestelde vragen:
+- Hoe voeg ik geluiden toe aan het dashboard?
+- Hoe voorkom ik dubbele geluiden?
+- Hoe verwijder ik geluiden uit het dashboard?
+- Hoe bewaar ik het dashboard met localStorage?
+- Hoe laad ik opgeslagen dashboardgeluiden opnieuw na refresh?
+
+Samenvatting:
+De agent hielp met functies om geluiden toe te voegen aan het dashboard, dubbele geluiden te vermijden, geluiden te verwijderen en de dashboarddata op te slaan met JSON.stringify. Bij het laden van de pagina wordt de data terug opgehaald met JSON.parse. Dit werd getest en werkte correct.
+
+
+ikzelf + Chatgpt+ - Eigen uitbreidingen en afwerking
+
+Doel:
+Extra functionaliteit toevoegen en het project afwerken.
+
+Gestelde vragen:
+- Welke eigen uitbreiding is geschikt?
+- Voeg dark mode toe met localStorage.
+- Geef mij de aangepaste code voor index.html, style.css en script.js.
+- Controleer of de verplichte functionaliteit volledig is.
+
+Samenvatting:
+De agent stelde enkele mogelijke uitbreidingen voor. Uiteindelijk werden een random sound-knop, een volume slider en dark mode met localStorage toegevoegd. De dark mode wordt bewaard in localStorage, zodat de gekozen theme behouden blijft na refresh. Na het testen werkten alle eerdere features nog correct.
+
+
+5. Korte reflectie
+
+AI werd vooral gebruikt om het project op te splitsen in kleine stappen, codevoorstellen te maken en fouten te helpen oplossen. Ik heb de code telkens getest na elke grote wijziging. Wanneer iets niet werkte, zoals de API key of de API-aanvraag, werd de foutmelding bekeken en werd de code aangepast. Ik heb in het algemeen ervoor gezorgd dat de code modulair is, zodat het toevoegen van comments makkelijker word en het begrijpen (en vooral aanpassen) van de code voor mij veel makkelijker word.
+
+De belangrijkste gebruikte technieken zijn:
+
+- querySelector;
+- querySelectorAll;
+- addEventListener;
+- fetch;
+- async/await;
+- localStorage;
+- JSON.stringify;
+- JSON.parse;
+- classList;
+- dataset;
+- Audio API;
+- template literals;
+- arrays en array-methodes zoals push, filter en some.
+
+De applicatie werd getest op zoeken, afspelen, stoppen, toevoegen, verwijderen, bewaren na refresh, random sound, volume aanpassen en dark mode. Alle verplichte functionaliteiten werkten na het testen correct.
