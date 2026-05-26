@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DWD Button Panel</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body>
+    <header class="page-header">
+        <h1>Sound Button Panel</h1>
+        <p>Zoek geluidseffecten en voeg ze toe aan je eigen dashboard.</p>
+    </header>
+
+    <main class="container">
+        <section class="search-section">
+            <h2>Geluiden zoeken</h2>
+
+            <form class="search-form">
+                <label for="searchInput">Zoekterm</label>
+
+                <div class="search-row">
+                    <input 
+                        type="text" 
+                        id="searchInput" 
+                        placeholder="Bijvoorbeeld: explosion, applause, cow..."
+                        required
+                    >
+                    <button type="submit">Zoeken</button>
+                </div>
+            </form>
+
+            <p class="message"></p>
+
+            <div class="results-container">
+                <!-- Zoekresultaten komen hier via JavaScript -->
+            </div>
+        </section>
+
+        <section class="dashboard-section">
+            <div class="section-title-row">
+                <h2>Mijn dashboard</h2>
+                <button class="random-button" type="button">Random sound</button>
+            </div>
+
+            <div class="volume-control">
+                <label for="volumeSlider">Volume</label>
+                <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1">
+            </div>
+
+            <div class="dashboard-container">
+                <!-- Favoriete buttons komen hier via JavaScript -->
+            </div>
+        </section>
+    </main>
+</body>
+</html>
